@@ -1,0 +1,15 @@
+{
+  "name": "Network Master Pro",
+  "short_name": "NetworkMaster",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#12151e",
+  "theme_color": "#12151e",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/2885/2885417.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
