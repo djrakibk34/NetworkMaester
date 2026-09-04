@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Network Master Pro</title>
+    <!-- PWA Manifest Link -->
+    <link rel="manifest" href="manifest.json">
     <style>
         * {
             margin: 0;
@@ -229,7 +231,7 @@
         </div>
     </div>
 
-    <!-- TAB 2: TOOLS (Port Scanner, Ping, Vulnerability) -->
+    <!-- TAB 2: TOOLS -->
     <div id="tab-tools" class="content-section">
         <div class="section-header">Network Security & Ports</div>
         
@@ -303,7 +305,6 @@
     </div>
 
     <script>
-        // Tab Switcher
         function switchTab(index, element) {
             const sections = document.querySelectorAll('.content-section');
             sections.forEach(sec => sec.classList.remove('active'));
@@ -323,7 +324,6 @@
             window.scrollTo(0, 0);
         }
 
-        // 1. Live Device Discovery Simulator (ARP & Connected Devices)
         function runFullScan() {
             const container = document.getElementById('deviceListContainer');
             const countText = document.getElementById('deviceCountText');
@@ -357,13 +357,11 @@
                     `;
                 });
 
-                // Add to Timeline
                 timeline.innerHTML = `<div class="device-item" style="font-size:13px; color:#8c93a3; padding:8px 0;"><span>${timeString} • Scan completed (${mockDevices.length} devices found)</span></div>` + timeline.innerHTML;
 
             }, 1000);
         }
 
-        // 2. Real Speed Test Logic
         async function runSpeedTest() {
             const speedDisplay = document.getElementById('speedDisplay');
             const speedStatus = document.getElementById('speedStatus');
@@ -388,18 +386,16 @@
             }
         }
 
-        // 3. Port Scanner Logic
         async function runPortScanner() {
-            const targetIp = prompt("Enter IP address or domain to scan ports (e.g., 10.1.33.1 or scan.me):", "10.1.33.1");
+            const targetIp = prompt("Enter IP address or domain to scan ports:", "10.1.33.1");
             if (!targetIp) return;
             
-            alert(`Initiating TCP port probe on ${targetIp} for common ports (80, 443, 22, 8080)...`);
+            alert(`Initiating TCP port probe on ${targetIp} for common ports...`);
             setTimeout(() => {
                 alert(`Scan finished for ${targetIp}:\n- Port 80 (HTTP): OPEN\n- Port 443 (HTTPS): OPEN\n- Port 22 (SSH): CLOSED`);
             }, 1500);
         }
 
-        // 4. Router Vulnerability & Ping Checkers
         function runVulnerabilityCheck() {
             alert("Checking UPnP configurations and default credentials...\nResult: Network is secure, no external UPnP exposure detected.");
         }
@@ -415,7 +411,6 @@
             }
         }
 
-        // Run initial scan on load
         window.onload = function() {
             runFullScan();
         };
