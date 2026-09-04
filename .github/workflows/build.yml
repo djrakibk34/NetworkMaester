@@ -1,0 +1,31 @@
+name: Build APK
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Nativefy or Web App Wrapper
+        run: |
+          npm install -g nativefier
+
+      - name: Build Android App (APK)
+        run: |
+          nativefier --name "NetworkMaster" --platform android --arch arm64 --disable-gpu "https://djrakibk34.github.io/NetworkMaester/" --out dist
+
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: NetworkMaster-APK
+          path: dist/**/*.apk
